@@ -1,0 +1,53 @@
+<div>
+    <label style="font-size: 22px; margin: 20px 10px">ข้อมูลพนักงาน</label>
+</div>
+
+<div class="card mt-10">
+    <label
+        style="text-align: start;font-size: 18px; margin: 20px 10px 2   0px 10px ">รายละเอียดการเพิ่มข้อมูลพนักงาน</label>
+    <!-- rider -->
+    <div class="row">
+        <!-- test -->
+        <div id="hide-print" class="col-4 xl:col-4 lg:col-4 md:col-12 sm:col-12">
+            <label style="font: size 20px;">ชื่อ<label style="color: red;">*</label> :
+                &nbsp; </label>
+            <input type="text" [(ngModel)]="firstRiderList">
+        </div>
+
+        <div id="hide-print" class="col-4 xl:col-4 lg:col-4 md:col-12 sm:col-12">
+            <label style="font: size 20px;">นามสกุล<label style="color: red;">*</label> :
+                &nbsp; </label>
+            <input type="text" [(ngModel)]="lastRiderList">
+        </div>
+
+        <div class="col-4 xl:col-4 lg:col-4 md:col-12 sm:col-12">
+            <label style="font: size 20px;">ชื่อเล่น<label style="color: red;">*</label> :
+                &nbsp; </label>
+            <input type="text" [(ngModel)]="nickNameRiderList">
+        </div>
+
+      
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-5">
+            <label style="font: size 20px;">เลขป้ายทะเบียนพาหนะ<label style="color: red;">*</label> :
+                &nbsp; </label>
+            <input type="text" [(ngModel)]="licenseRiderList">
+        </div>
+
+        <div class="col-5">
+                <label style="font: size 20px;">เบอร์โทร<label style="color: red;">*</label> :
+                    &nbsp; </label>
+                <input type="text" [(ngModel)]="phoneRiderList">
+        </div>
+        <div class="col-2">
+                <div style="text-align: end;margin-right: 12vh;">
+                    <button type="button" class="btn btn-success w-200 " (click)="submit()">บันทึก</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+       
+    </div>
+</div>

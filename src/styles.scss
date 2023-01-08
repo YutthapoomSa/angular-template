@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/prismjs/themes/prism-coy.css";
+@import "assets/demo/flags/flags.css";
+@import "assets/demo/documentation.scss";
+@import "assets/sass/layout/_variables";
+@import "assets/sass/layout/_layout";
+@import "assets/sass/overrides/_overrides";
+@import url('https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,200;0,300;0,400;1,200;1,300&family=Mitr:wght@200;300;400;500;600;700&display=swap');
+
+
+
+:root{
+    --font-family: 'Mitr', sans-serif;
+}
+
+@media print
+{    
+    // .no-print, .no-print *
+    // {
+    //     display: none !important;
+    // }
+
+    .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+
+
+}
+

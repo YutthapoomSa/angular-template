@@ -1,0 +1,155 @@
+<div class="card m-10">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-6 col-sm-12 col-md-6">
+                    <h3>ข้อมูลการประเมิน</h3>
+                </div>
+                <div class="col-6">
+                    <div style="text-align: end;">
+                        <p-button (click)="showBasicDialog1()" icon="" label="เพิ่มข้อมูล" style="font-size: 22px;">
+                        </p-button>
+                    </div>
+                    <p-dialog header="เพิ่มข้อมูล" [(visible)]="displayBasic1"
+                        [style]="{width: '50vw',  height: '40vw'}">
+                        <div class="card m-10">
+                            <div class="row" style="margin: 10px 0px 20px ;">
+                                <div class="row">
+                                    <label style="font: size 20px;">
+                                        <B>เพิ่มหัวข้อ</B>
+                                    </label>
+                                    <div class="col-12 ">
+                                        <div class="p-inputgroup">
+                                            <input type="text" pInputText placeholder="" [(ngModel)]="titleList">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-6" style="font: size 20px; ">
+                                        <B>เพิ่มรายละเอียด </B>
+                                    </label>
+                                    <p-button label="เพิ่มรายละเอียด" class="col-6" style="text-align: end;" (click)="addsub">
+                                    </p-button>
+                                    <div class="col-12 ">
+                                        <div class="p-inputgroup">
+                                            <input type="text" pInputText placeholder="" [(ngModel)]="SubtitleList">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template pTemplate="footer">
+                            <p-button icon="pi pi-check" (click)="submit()" label="บันทึก" styleClass="p-button-text">
+                            </p-button>
+                        </ng-template>
+                    </p-dialog>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="card-body ">
+        <!-- <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-bordered table-hover dataTable dtr-inline"
+                            aria-describedby="example2_info">
+                            <thead>
+                                <tr>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Rendering engine: activate to sort column ascending">หัวข้อ</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">รายละเอียด  </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                            </tbody>
+                        </table>
+                </div>
+            </div> -->
+        <div class="card">
+            <p-table [value]="titleList" selectionMode="single" [(selection)]="selectedProduct2" dataKey="id"
+                (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="col-4" scope="col">หัวข้อ</th>
+                        <th class="col-8" scope="col">รายละเอียด</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-title>
+                    <tr [pSelectableRow]="title" *ngFor="let title of title">
+                        <th scope="row">{{ title.id}}</th>
+                        <td>{{title.titleList}</td>
+                        <td>{{title.SubtitleList}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- <div class="col-2">
+
+    <div style="margin-right: 6vh; ">
+        <div style=" text-align: end;">
+            <p-button (click)="showBasicDialog2()" icon="" label="เพิ่มรายละเอียด" style="font-size: 22px;"></p-button>
+        </div>
+        <p-dialog header="เพิ่มข้อมูล" [(visible)]="displayBasic2" [style]="{width: '50vw', height: '40vw'}">
+            <div class="card m-10">
+                <div class="row" style="margin: 10px 0px 20px ;">
+                    <div class="col-6">
+                        <label>เลือกหัวข้อ : &nbsp; </label>
+                        <p-dropdown class="col-3 xl:col-12 lg:col-2 md:col-3 sm:col-3 getTitle" [options]="title"
+                            [(ngModel)]="idTitleUpdate" [editable]="true" optionLabel="name" optionValue="id"
+                            placeholder="กรุณาเลือก">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-6">
+                        <label style="font: size 20px;">เพิ่มรายละเอียด : &nbsp; </label>
+                        <input class="col-3 xl:col-12 lg:col-2 md:col-3 sm:col-3" type="text"
+                            [(ngModel)]="SubtitleList">
+                    </div>
+                </div>
+            </div>
+            <ng-template pTemplate="footer">
+                <p-button icon="pi pi-check" (click)="createSubTitle()" label="บันทึก" styleClass="p-button-text">
+                </p-button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>
+
+
+
+
+<h3 style="text-align: center;">เพิ่มข้อมูล</h3><br>
+    <div class="row">
+        <div id="hide-print" class="col-6 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+            <label style="font: size 20px;" class="col-3 xl:col-3 lg:col-3 md:col-3 sm:col-4">เพิ่มหัวข้อ<label
+                    style="color: red;">*</label> :
+            </label>
+            <input type="text" [(ngModel)]="titleList">
+        </div>
+
+
+        <div id="hide-print" class="col-6 xl:col-6 lg:col-6 md:col-12 sm:col-6">
+            <label style="font: size 20px;" class="col-3 xl:col-3 lg:col-3 md:col-3 sm:col-4">เพิ่มรายละเอียด<label
+                    style="color: red;">*</label> :
+                &nbsp; </label>
+            <input type="text" [(ngModel)]="SubtitleList">
+        </div>
+
+    </div>
+    <div class="rclass="btn btn-success w-200 m-10 col-3 xl:col-3 lg:col-3 md:col-3 sm:col-3 "
+                (click)="submit(ow" style="margin: 30px 10px 0px 10px;"    >
+        <div class="col-6" style="text-align: end;"><button type="button"
+                )">บันทึก</button></div>
+        <div class="col-6" style="text-align: start;"><button type="button"
+                class="btn btn-danger w-200 m-10 col-3 xl:col-3 lg:col-3 md:col-3 sm:col-3 "
+                (click)="cancel()">ยกเลิก</button></div>
+        <br>
+    </div>  -->

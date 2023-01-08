@@ -1,0 +1,235 @@
+<div>
+    <label style="font-size: 26px; margin: 20px 10px">ประเมินไรเดอร์</label>
+</div>
+<div class="card m-10">
+    <!-- rider -->
+    <div class="row">
+        <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5 " style="margin: 0px 0px 0px 10px">
+            <label>เลือกไรเดอร์<label style="color: red;">*</label> :
+                &nbsp; </label>
+            <p-dropdown class="getrider" [editable]="true" optionLabel="name" optionValue="id" [options]="rider"
+                placeholder="กรุณาเลือก" showClear="true" [(ngModel)]="riderId"></p-dropdown>
+        </div>
+        <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+            <label>เลือกวันที่<label style="color: red;">*</label> : &nbsp; </label>
+            <p-calendar (change)="DateSearch()" type="date" [showIcon]="true" [showButtonBar]="true" [(ngModel)]="date"
+                placeholder="กรุณาเลือก"></p-calendar>
+        </div>
+    </div>
+
+    <!-- -- title -- -->
+    <div style="margin: 10px 0px;">
+
+        <label style="font-size: 22px; margin: 20px 10px">หมวดหมู่</label>
+    </div>
+
+    <div class="row ">
+        <ng-container *ngFor="let data1 of cardTitle; let i = index;">
+            <div class="card card-title col-2 xl:col-2 lg:col-2 md:col-2 sm:col-2"
+                [ngClass]="{'card-title1':currentIndexCard === i}">
+                <label style="cursor:pointer;" (click)="selectCard(i)">{{data1.cardName}} </label>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="card">
+        <div class="row">
+            <div class="row">
+                <label style="font-size: 22px; margin: 0px 10px 10px ">รายละเอียด</label>
+            </div>
+
+            <div class="col-5">
+                
+                <label>เลือกหัวข้อ<label style="color: red;">*</label>
+                    :
+                    &nbsp; </label>
+                <p-dropdown class="col-3 xl:col-8 lg:col-2 md:col-3 sm:col-3 getTitle" [options]="title"
+                    [(ngModel)]="titleId" [editable]="true" optionLabel="name" optionValue="id"
+                    placeholder="กรุณาเลือก"></p-dropdown>
+            </div>
+
+            <div class="col-5" style="margin-left: -20px;">
+                
+                <label>เลือกรายละเอียด<label style="color: red;">*</label> : &nbsp; </label>
+                <p-dropdown [options]="subtitle" [(ngModel)]="subtitleId" [editable]="true" optionLabel="name" optionValue="id"
+                    class="col-3 xl:col-8 lg:col-2 md:col-3 sm:col-3 getS "></p-dropdown>
+            </div>
+            
+
+        </div>
+
+        <div class="row">
+            <ng-container *ngIf="currentIndexCard === 0 ">
+                <div class="col-6">
+
+                    <label>เลือก Point<label style="color: red;">*</label> : &nbsp; </label>
+                    <p-dropdown [options]="addPoint" [(ngModel)]="addPointId" optionLabel="name"
+                        optionValue="id" class="col-3 xl:col-5 lg:col-2 md:col-3 sm:col-3"></p-dropdown>
+                </div>
+
+                <div class="col-6">
+                    <label>เลือกวันที่เริ่มลา<label style="color: red;">*</label> : &nbsp; </label>
+                    <p-calendar (change)="DateSearch()" type="date" [showIcon]="true" [showButtonBar]="true"
+                        [(ngModel)]="dateStart" placeholder="กรุณาเลือก"></p-calendar>
+                </div>
+                <div class="col-6">
+                    <label>เลือกวันที่ลาสิ้นสุด<label style="color: red;">*</label> :&nbsp; </label>
+                    <p-calendar (change)="DateSearch()" type="date" [showIcon]="true" [showButtonBar]="true"
+                        [(ngModel)]="dateEnd" placeholder="กรุณาเลือก"></p-calendar>
+                </div>
+
+                <div class="col-6">
+                    <label>หมายเลข Order<label style="color: red;">*</label>
+                        :&nbsp; </label>
+                    <label>TSK - <input type="text" class="col-8 xl:col-8 lg:col-8 md:col-8 sm:col-8 br-10 b "
+                            placeholder="0000" [(ngModel)]="orderNumberList">
+                    </label>
+                </div>
+
+            </ng-container>
+        </div>
+        <ng-container *ngIf="currentIndexCard === 1">
+            <div class="row">
+                <div class="col-6">
+                    <label>เลือก Point<label style="color: red;">*</label> : &nbsp; </label>
+                    <p-dropdown [options]="addPoint" [(ngModel)]="addPointId" optionLabel="name"
+                        optionValue="id" class="col-3 xl:col-5 lg:col-2 md:col-3 sm:col-3"></p-dropdown>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="currentIndexCard === 2">
+            <div class="row">
+            </div>
+        </ng-container>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <label>หมายเหตุ<label style="color: red;">*</label>
+                :&nbsp; </label>
+        </div>
+        <div class="col-12">
+
+            <textarea type="text" style="height: 10vh;
+            width: 100%;" placeholder=" เพิ่มข้อมูล....." [(ngModel)]="annotation"></textarea>
+        </div>
+    </div>
+    <div class="row">
+
+        <div style="text-align: center; margin-right: 12vh;">
+            <button type="button" class="btn btn-success w-200 " (click)="submit()">บันทึก</button>
+        </div>
+
+    </div>
+
+    <!-- <div class="field col-9 mb-0">
+        <div class="formgrid grid">
+            <div class="field col-12 mb-0">
+                <p-dropdown optionValue="data" optionLabel="name" [(ngModel)]="item.type" inputId="type"
+                    [options]="inputType" (onChange)="checkAssessType($event, i1)" placeholder="ประเภทของข้อมูล"
+                    [showClear]="true">
+                </p-dropdown>
+                <small class="p-error" *ngIf="submitted && !item.type">Role is required.</small>
+            </div>
+        </div>
+    </div> -->
+
+</div>
+
+
+
+
+
+
+<!-- <div class="row">
+        <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+            <label class="col-3 xl:col-3 lg:col-3 md:col-3 sm:col-4">เลือกหัวข้อ<label style="color: red;">*</label> :
+                &nbsp; </label>
+            
+        </div>
+    </div>
+
+    -- subtitle --
+    <div class="row">
+        -- test --
+        <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+            <label style="font: size 20px;" class="col-3 xl:col-3 lg:col-3 md:col-3 sm:col-4">เพิ่มรายละเอียด<label style="color: red;">*</label> :
+            &nbsp; </label>
+            <input type="text" [(ngModel)]="SubtitleList">
+        </div>
+    </div>
+    <div class="row">
+        <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+            <label class="col-3 xl:col-3 lg:col-3 md:col-3 sm:col-3">เลือกรายละเอียด<label style="color: red;">*</label>
+                :&nbsp;</label>
+            <p-dropdown (change)="changeSubtitle1($event)" optionValue="subId" [options]="subt1" [(ngModel)]="subt1Id"
+                optionLabel="name" placeholder="กรุณาเลือก" [showClear]="true" filter="filter">
+            </p-dropdown>
+        </div>
+    </div>
+
+
+    -- หน้าปฏิเสธออเดอร์ --
+    <p-dialog>
+        <div class="row">
+            <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+                <label class="col-3 xl:col-3 lg:col-3 md:col-3 sm:col-3">หมายเลข Order <label
+                        style="color: red;">*</label>
+                    :&nbsp; </label>
+                <label class="col-8 xl:col-8 lg:col-8 md:col-8 sm:col-8">TSK -
+                    <input type="text" class="col-8 xl:col-8 lg:col-8 md:col-8 sm:col-8 br-10 b " placeholder="0000">
+                </label>
+            </div>
+        </div>
+    </p-dialog>
+
+    -- หน้าโอนยอด --
+    <p-dialog>
+        <div class="row">
+            <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+                <label>เลือกวันที่เริ่มต้น<label style="color: red;">*</label> : &nbsp; </label>
+                <p-calendar (change)="DateSearch()" type="date" [showIcon]="true" [showButtonBar]="true"
+                    [(ngModel)]="dateStart" placeholder="กรุณาเลือก"></p-calendar>
+            </div>
+            <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+                <label for="time">เลือกเวลา <label style="color: red;">*</label> : &nbsp; </label>
+                <input type="time" name="time">
+            </div>
+        </div>
+    </p-dialog>
+
+    -- หน้าเข้างาน --
+    <p-dialog>
+        <div class="row ">
+            <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+                <label for="time">เวลาเข้างาน <label style="color: red;">*</label> : &nbsp; </label>
+                <input type="time" name="time">
+            </div>
+            <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+                <label for="time">เวลาที่สาย <label style="color: red;">*</label> : &nbsp; </label>
+                <input type="time" name="time">
+            </div>
+        </div>
+    </p-dialog>
+
+
+    <div class="row">
+        <div class="row">
+            <div id="hide-print" class="col-5 xl:col-5 lg:col-5 md:col-5 sm:col-5">
+                <label class="col-3 xl:col-3 lg:col-3 md:col-3 sm:col-3">เลือก Point<label style="color: red;">*</label>
+                    :&nbsp; </label>
+                <p-dropdown (change)="changePoint($event)" optionValue="pointId" [options]="point" [(ngModel)]="pointId"
+                    optionLabel="name" [showClear]="true" filter="filter">
+                </p-dropdown>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <button type="button" class="btn btn-danger w-200 m-10" (click)="cancel()">ยกเลิก</button>
+        <br>
+    </div>
+
+</div> -->
